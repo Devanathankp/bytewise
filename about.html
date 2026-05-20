@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — ByteWise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0f0f0f;--ink2:#3a3a3a;--ink3:#888;--paper:#fafaf7;--cream:#f3f1eb;--accent:#e84e1b;--card-border:#e2e0d8;--max:720px;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;}
+  nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1.5px solid var(--card-border);padding:0 24px;}
+  .nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px;}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--ink);text-decoration:none;}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--ink2);font-size:14px;font-weight:500;}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+  .nav-cta{background:var(--ink);color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;}
+  .nav-cta:hover{background:var(--accent);}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:64px 24px 80px;}
+  .about-hero{background:var(--cream);border-radius:20px;padding:48px;margin-bottom:48px;text-align:center;}
+  .avatar{width:80px;height:80px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:28px;margin:0 auto 20px;}
+  .about-name{font-family:'Syne',sans-serif;font-weight:800;font-size:32px;letter-spacing:-.5px;margin-bottom:8px;}
+  .about-tagline{font-size:16px;color:var(--ink2);font-weight:300;}
+  .about-location{font-size:14px;color:var(--ink3);margin-top:6px;}
+
+  h2{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;letter-spacing:-.4px;margin:40px 0 14px;}
+  p{color:var(--ink2);font-weight:300;margin-bottom:16px;font-size:16px;}
+  strong{font-weight:600;color:var(--ink);}
+
+  .topics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0;}
+  .topic-item{background:var(--cream);border:1.5px solid var(--card-border);border-radius:10px;padding:14px 16px;font-size:14px;font-weight:500;}
+  .topic-item span{font-size:18px;margin-right:8px;}
+
+  .contact-box{background:var(--ink);color:#fff;border-radius:14px;padding:32px;margin-top:40px;}
+  .contact-box h3{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;margin-bottom:10px;}
+  .contact-box p{color:#aaa;font-weight:300;margin-bottom:20px;font-size:15px;}
+  .contact-link{background:var(--accent);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;}
+
+  @media(max-width:600px){.nav-links{display:none;}.topics-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Byte<span>Wise</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+    <a href="index.html#newsletter" class="nav-cta">Subscribe</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="about-hero">
+    <div class="avatar">BW</div>
+    <div class="about-name">ByteWise</div>
+    <div class="about-tagline">Tech insights. Real talk. No fluff.</div>
+    <div class="about-location">📍 Tamil Nadu, India · Est. 2026</div>
+  </div>
+
+  <h2>What is ByteWise?</h2>
+  <p>ByteWise is a personal tech blog covering <strong>AI tools, gadgets, coding, productivity, and the ideas shaping how we work</strong> — written in plain English, without the jargon or hype.</p>
+  <p>Most tech content is either too shallow ("here are 10 AI tools!") or too technical for anyone outside a specific field. ByteWise tries to be the middle ground: detailed enough to be genuinely useful, but written so anyone curious can follow along.</p>
+
+  <h2>Topics Covered</h2>
+  <div class="topics-grid">
+    <div class="topic-item"><span>🤖</span>AI Tools & Agents</div>
+    <div class="topic-item"><span>💻</span>Coding & Dev Tools</div>
+    <div class="topic-item"><span>📱</span>Gadget Reviews</div>
+    <div class="topic-item"><span>⚡</span>Productivity</div>
+    <div class="topic-item"><span>🔬</span>Tech Deep Dives</div>
+    <div class="topic-item"><span>🇮🇳</span>India Tech Scene</div>
+    <div class="topic-item"><span>🌱</span>Beginner-Friendly</div>
+    <div class="topic-item"><span>🛒</span>Buying Guides</div>
+  </div>
+
+  <h2>Why Read This?</h2>
+  <p>There's no paywall. No sponsored rankings. No affiliate-driven "best of" lists where the #1 product is the one that paid the most. Just honest takes on what's actually worth your time and money.</p>
+  <p>Everything is written from <strong>Tamil Nadu, India</strong> — so prices, availability, and context are relevant to Indian readers, even when covering global tools.</p>
+
+  <h2>How to Follow</h2>
+  <p>The best way to keep up is to <strong><a href="index.html#newsletter" style="color:var(--accent)">subscribe to the newsletter</a></strong> — new articles go out whenever something worth writing about happens. No fixed schedule, no daily noise.</p>
+  <p>You can also bookmark <strong>articles.html</strong> and check back whenever you want.</p>
+
+  <div class="contact-box">
+    <h3>Want to suggest a topic?</h3>
+    <p>If there's something you'd like covered — a product review, an AI tool comparison, a how-to guide — reach out. The best blogs are shaped by what readers actually want to read.</p>
+    <a href="mailto:hello@bytewise.blog" class="contact-link">✉️ Get in touch</a>
+  </div>
+</div>
+</body>
+</html>

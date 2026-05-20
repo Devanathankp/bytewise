@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Articles — ByteWise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0f0f0f;--ink2:#3a3a3a;--ink3:#888;--paper:#fafaf7;--cream:#f3f1eb;--accent:#e84e1b;--accent2:#1b6fe8;--card-border:#e2e0d8;--max:1160px;--r:10px;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px;}
+  nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1.5px solid var(--card-border);padding:0 24px;}
+  .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px;}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--ink);text-decoration:none;}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--ink2);font-size:14px;font-weight:500;transition:color .2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+  .nav-cta{background:var(--ink);color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;text-decoration:none;}
+  .nav-cta:hover{background:var(--accent);}
+
+  .page-header{max-width:var(--max);margin:0 auto;padding:56px 24px 32px;}
+  .page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:42px;letter-spacing:-1px;margin-bottom:10px;}
+  .page-desc{font-size:17px;color:var(--ink2);font-weight:300;}
+
+  .filter-bar{max-width:var(--max);margin:0 auto;padding:0 24px 32px;display:flex;gap:8px;flex-wrap:wrap;}
+  .filter-btn{background:var(--cream);border:1.5px solid var(--card-border);color:var(--ink2);padding:7px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+  .filter-btn:hover,.filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .filter-btn.active-accent{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+  .articles-list{max-width:var(--max);margin:0 auto;padding:0 24px 80px;display:flex;flex-direction:column;gap:1px;}
+
+  .article-row{display:grid;grid-template-columns:100px 1fr auto;gap:24px;align-items:center;padding:20px 0;border-bottom:1px solid var(--card-border);text-decoration:none;color:inherit;transition:background .15s;border-radius:8px;}
+  .article-row:hover{background:var(--cream);}
+  .article-row:hover{padding:20px 12px;margin:0 -12px;}
+  .row-thumb{width:100px;height:70px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
+  .row-body{}
+  .row-tags{display:flex;gap:6px;margin-bottom:6px;}
+  .tag{background:#eeecea;color:#3a3a3a;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;}
+  .tag.accent{background:#e84e1b18;color:var(--accent);}
+  .tag.blue{background:#1b6fe818;color:var(--accent2);}
+  .row-title{font-family:'Syne',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.3px;line-height:1.25;margin-bottom:6px;}
+  .row-excerpt{font-size:13.5px;color:var(--ink2);font-weight:300;line-height:1.5;}
+  .row-meta{text-align:right;white-space:nowrap;font-size:12px;color:var(--ink3);display:flex;flex-direction:column;gap:4px;align-items:flex-end;}
+  .row-read{font-size:13px;font-weight:600;color:var(--accent);}
+
+  /* coming soon row */
+  .article-row.draft{opacity:.5;cursor:default;}
+  .draft-badge{background:#eeecea;color:#888;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;}
+
+  /* add article CTA */
+  .add-article{max-width:var(--max);margin:32px auto 0;padding:0 24px;}
+  .add-box{background:var(--cream);border:2px dashed var(--card-border);border-radius:14px;padding:32px;text-align:center;}
+  .add-box h3{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;margin-bottom:8px;}
+  .add-box p{font-size:14px;color:var(--ink2);font-weight:300;margin-bottom:18px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .add-box code{background:#e2e0d8;padding:2px 8px;border-radius:4px;font-size:13px;font-family:monospace;}
+  .add-btn{background:var(--accent);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+  .add-btn:hover{opacity:.88;}
+
+  @media(max-width:700px){.article-row{grid-template-columns:1fr;}.row-thumb{display:none;}.row-meta{flex-direction:row;justify-content:flex-start;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Byte<span>Wise</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="articles.html" class="active">Articles</a></li>
+      <li><a href="index.html#categories">Topics</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="index.html#newsletter" class="nav-cta">Subscribe</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1 class="page-title">All Articles</h1>
+  <p class="page-desc">Everything published on ByteWise — tech, AI, gadgets, and more.</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active-accent" onclick="filterCat('all',this)">All</button>
+  <button class="filter-btn" onclick="filterCat('ai',this)">🤖 AI & Agents</button>
+  <button class="filter-btn" onclick="filterCat('coding',this)">💻 Coding Tools</button>
+  <button class="filter-btn" onclick="filterCat('gadgets',this)">📱 Gadgets</button>
+  <button class="filter-btn" onclick="filterCat('productivity',this)">⚡ Productivity</button>
+  <button class="filter-btn" onclick="filterCat('india',this)">🇮🇳 India Tech</button>
+</div>
+
+<div class="articles-list">
+
+  <!-- ARTICLE 1 -->
+  <a href="article-ai-tools.html" class="article-row" data-cat="ai coding">
+    <div class="row-thumb" style="background:linear-gradient(135deg,#0f0f0f,#1e1e1e);">🗺️</div>
+    <div class="row-body">
+      <div class="row-tags"><span class="tag accent">AI TOOLS</span><span class="tag">GUIDE</span></div>
+      <div class="row-title">The Complete AI Tools Landscape 2026 — 40+ Products Mapped</div>
+      <div class="row-excerpt">Claude Code, OpenClaw, Cursor, ChatGPT and 36 more tools organized across 8 clear categories with a simple guide on which to use.</div>
+    </div>
+    <div class="row-meta">
+      <span>May 20, 2026</span>
+      <span>8 min read</span>
+      <span class="row-read">Read →</span>
+    </div>
+  </a>
+
+  <!-- ARTICLE 2 -->
+  <a href="article-openclaw.html" class="article-row" data-cat="ai">
+    <div class="row-thumb" style="background:linear-gradient(135deg,#001a33,#002a4d);">🦞</div>
+    <div class="row-body">
+      <div class="row-tags"><span class="tag accent">AI AGENTS</span></div>
+      <div class="row-title">OpenClaw Explained — The Free AI Agent Going Viral in 2026</div>
+      <div class="row-excerpt">What it is, how it compares to Claude Code and Copilot, why it went viral, and whether the security risks are worth it.</div>
+    </div>
+    <div class="row-meta">
+      <span>May 18, 2026</span>
+      <span>6 min read</span>
+      <span class="row-read">Read →</span>
+    </div>
+  </a>
+
+  <!-- DRAFT PLACEHOLDERS — replace with your own articles! -->
+  <div class="article-row draft" data-cat="gadgets india">
+    <div class="row-thumb" style="background:linear-gradient(135deg,#1a0f0a,#2e1a0f);">📱</div>
+    <div class="row-body">
+      <div class="row-tags"><span class="tag blue">GADGETS</span><span class="tag">INDIA</span><span class="draft-badge">✏️ Draft</span></div>
+      <div class="row-title">Vivo V70 Review — Best Mid-Range Camera Phone in India 2026?</div>
+      <div class="row-excerpt">Full review of the Vivo V70 5G — ZEISS cameras, Snapdragon 7 Gen 4, ₹45,999 price tag. Worth buying over alternatives?</div>
+    </div>
+    <div class="row-meta">
+      <span>Coming soon</span>
+      <span>~5 min</span>
+    </div>
+  </div>
+
+  <div class="article-row draft" data-cat="productivity">
+    <div class="row-thumb" style="background:linear-gradient(135deg,#0a1a0f,#0f2e1a);">⚡</div>
+    <div class="row-body">
+      <div class="row-tags"><span class="tag">PRODUCTIVITY</span><span class="draft-badge">✏️ Draft</span></div>
+      <div class="row-title">How I Use AI Tools to Save 3 Hours Every Day</div>
+      <div class="row-excerpt">My actual daily workflow using Claude, Cursor, and OpenClaw together — with the exact prompts and automations I rely on.</div>
+    </div>
+    <div class="row-meta">
+      <span>Coming soon</span>
+    </div>
+  </div>
+
+  <div class="article-row draft" data-cat="ai india">
+    <div class="row-thumb" style="background:linear-gradient(135deg,#1a1a0f,#2a2a1a);">🇮🇳</div>
+    <div class="row-body">
+      <div class="row-tags"><span class="tag accent">AI</span><span class="tag">INDIA TECH</span><span class="draft-badge">✏️ Draft</span></div>
+      <div class="row-title">Best AI Tools for Indian Professionals in 2026</div>
+      <div class="row-excerpt">Which AI tools work best in India? Pricing in INR, data privacy rules, language support, and which ones are actually worth paying for.</div>
+    </div>
+    <div class="row-meta">
+      <span>Coming soon</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ADD ARTICLE BOX -->
+<div class="add-article">
+  <div class="add-box">
+    <h3>📝 Add a New Article</h3>
+    <p>To publish a new article, duplicate <code>article-ai-tools.html</code>, replace the content with your new article, then add a new row in this file following the same pattern as the articles above.</p>
+    <button class="add-btn" onclick="alert('Steps to add an article:\n\n1. Copy article-ai-tools.html → rename it (e.g. article-vivo-review.html)\n2. Edit the title, content, and tags inside\n3. Open articles.html and add a new <a class=\"article-row\"> block\n4. Add a card on index.html too\n\nThat\'s it! No backend needed.')">📖 How to add articles</button>
+  </div>
+</div>
+
+<br><br>
+
+<script>
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.remove('active', 'active-accent');
+  });
+  btn.classList.add('active-accent');
+
+  document.querySelectorAll('.article-row').forEach(row => {
+    const cats = row.dataset.cat || '';
+    if (cat === 'all' || cats.includes(cat)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>

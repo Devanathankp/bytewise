@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ByteWise — Tech, AI & More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --ink2: #3a3a3a;
+    --ink3: #888;
+    --paper: #fafaf7;
+    --cream: #f3f1eb;
+    --accent: #e84e1b;
+    --accent2: #1b6fe8;
+    --tag-bg: #eeecea;
+    --card-border: #e2e0d8;
+    --max: 1160px;
+    --r: 10px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--paper);
+    border-bottom: 1.5px solid var(--card-border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+  }
+  .logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink2);
+    font-size: 14px; font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); }
+  .nav-cta {
+    background: var(--ink); color: #fff;
+    border: none; padding: 8px 18px; border-radius: 6px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background .2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: var(--max); margin: 0 auto;
+    padding: 72px 24px 56px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--cream); border: 1px solid var(--card-border);
+    padding: 5px 12px; border-radius: 20px;
+    font-size: 12px; font-weight: 500; color: var(--ink2);
+    margin-bottom: 20px; letter-spacing: .03em;
+  }
+  .hero-label-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; } 50% { opacity: .4; }
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(38px, 5vw, 58px); line-height: 1.05;
+    letter-spacing: -1.5px; color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--accent); font-style: normal; }
+  .hero p {
+    font-size: 17px; color: var(--ink2); line-height: 1.7;
+    max-width: 480px; margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none;
+    padding: 13px 26px; border-radius: var(--r);
+    font-size: 15px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,78,27,.3); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    border: 1.5px solid var(--card-border);
+    padding: 12px 24px; border-radius: var(--r);
+    font-size: 15px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; text-decoration: none;
+    transition: border-color .2s, color .2s; display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--ink); }
+
+  .hero-visual {
+    background: var(--cream);
+    border: 1.5px solid var(--card-border);
+    border-radius: 16px; padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .stat-row { display: flex; gap: 14px; }
+  .stat-card {
+    flex: 1; background: var(--paper);
+    border: 1px solid var(--card-border);
+    border-radius: var(--r); padding: 16px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px;
+    color: var(--ink); line-height: 1;
+  }
+  .stat-card .lbl {
+    font-size: 12px; color: var(--ink3); margin-top: 4px;
+  }
+  .featured-mini {
+    background: var(--paper); border: 1px solid var(--card-border);
+    border-radius: var(--r); padding: 16px; display: flex; gap: 12px; align-items: flex-start;
+    text-decoration: none; transition: border-color .2s;
+  }
+  .featured-mini:hover { border-color: var(--accent); }
+  .mini-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: linear-gradient(135deg, #e84e1b22, #e84e1b11);
+    border: 1px solid #e84e1b33;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .mini-title {
+    font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4;
+  }
+  .mini-meta { font-size: 11px; color: var(--ink3); margin-top: 3px; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1.5px solid var(--card-border); margin: 0; }
+
+  /* ── SECTION ── */
+  .section { max-width: var(--max); margin: 0 auto; padding: 56px 24px; }
+  .section-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 26px; letter-spacing: -0.5px;
+  }
+  .see-all {
+    font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500;
+  }
+  .see-all:hover { text-decoration: underline; }
+
+  /* ── ARTICLE CARDS ── */
+  .articles-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .article-card {
+    background: var(--paper); border: 1.5px solid var(--card-border);
+    border-radius: 14px; overflow: hidden;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+    cursor: pointer; text-decoration: none; display: block; color: inherit;
+  }
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.08);
+    border-color: #ccc;
+  }
+  .card-thumb {
+    height: 170px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    position: relative; overflow: hidden;
+  }
+  .card-body { padding: 20px; }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tag {
+    background: var(--tag-bg); color: var(--ink2);
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 500; letter-spacing: .02em;
+  }
+  .tag.accent { background: #e84e1b18; color: var(--accent); }
+  .tag.blue { background: #1b6fe818; color: var(--accent2); }
+  .card-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 17px; line-height: 1.3; letter-spacing: -.3px;
+    margin-bottom: 8px;
+  }
+  .card-excerpt {
+    font-size: 13.5px; color: var(--ink2); line-height: 1.6;
+    margin-bottom: 14px; font-weight: 300;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 14px; border-top: 1px solid var(--card-border);
+  }
+  .card-meta { font-size: 12px; color: var(--ink3); }
+  .card-read {
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* ── FEATURED (big) ── */
+  .featured-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+  .featured-card {
+    background: var(--ink); color: #fff;
+    border-radius: 14px; overflow: hidden;
+    text-decoration: none; display: block;
+    transition: transform .2s;
+  }
+  .featured-card:hover { transform: translateY(-4px); }
+  .featured-thumb {
+    height: 220px; display: flex; align-items: center; justify-content: center;
+    font-size: 72px; background: #1a1a1a; position: relative;
+  }
+  .featured-body { padding: 24px; }
+  .featured-tag {
+    background: var(--accent); color: #fff;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; letter-spacing: .04em;
+    display: inline-block; margin-bottom: 12px;
+  }
+  .featured-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 22px; line-height: 1.25; letter-spacing: -.4px;
+    margin-bottom: 10px;
+  }
+  .featured-excerpt { font-size: 14px; color: #bbb; line-height: 1.6; font-weight: 300; }
+  .featured-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 24px; border-top: 1px solid #2a2a2a;
+  }
+  .featured-meta { font-size: 12px; color: #888; }
+  .featured-read { font-size: 13px; font-weight: 600; color: var(--accent); }
+
+  /* sidebar cards */
+  .side-cards { display: flex; flex-direction: column; gap: 14px; }
+  .side-card {
+    background: var(--cream); border: 1.5px solid var(--card-border);
+    border-radius: 12px; padding: 18px 20px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 6px;
+    transition: border-color .2s, transform .2s;
+    flex: 1;
+  }
+  .side-card:hover { border-color: var(--accent); transform: translateX(4px); }
+  .side-num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 32px; color: var(--card-border); line-height: 1;
+  }
+  .side-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 15px; line-height: 1.3;
+  }
+  .side-meta { font-size: 12px; color: var(--ink3); }
+
+  /* ── CATEGORIES ── */
+  .categories-bar {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .cat-btn {
+    background: var(--cream); border: 1.5px solid var(--card-border);
+    color: var(--ink2); padding: 8px 18px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all .15s; text-decoration: none; display: inline-block;
+  }
+  .cat-btn:hover, .cat-btn.active {
+    background: var(--ink); color: #fff; border-color: var(--ink);
+  }
+  .cat-btn.active-accent {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    background: var(--ink); color: #fff;
+    border-radius: 20px; padding: 56px 48px;
+    margin: 0 24px 56px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    max-width: calc(var(--max) - 0px); margin-left: auto; margin-right: auto;
+  }
+  .nl-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 32px; line-height: 1.15; letter-spacing: -.8px;
+    margin-bottom: 12px;
+  }
+  .nl-title em { color: var(--accent); font-style: normal; }
+  .nl-desc { font-size: 15px; color: #aaa; line-height: 1.6; font-weight: 300; }
+  .nl-form { display: flex; flex-direction: column; gap: 12px; }
+  .nl-input {
+    background: #1e1e1e; border: 1.5px solid #333;
+    color: #fff; padding: 13px 16px; border-radius: 8px;
+    font-size: 15px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color .2s;
+  }
+  .nl-input:focus { border-color: var(--accent); }
+  .nl-input::placeholder { color: #666; }
+  .nl-btn {
+    background: var(--accent); color: #fff; border: none;
+    padding: 13px 24px; border-radius: 8px;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: opacity .2s;
+  }
+  .nl-btn:hover { opacity: .88; }
+  .nl-note { font-size: 12px; color: #666; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1.5px solid var(--card-border);
+    padding: 40px 24px;
+  }
+  .footer-inner {
+    max-width: var(--max); margin: 0 auto;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px;
+    text-decoration: none; color: var(--ink);
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-tagline { font-size: 13px; color: var(--ink3); margin-top: 5px; }
+  .footer-links { display: flex; gap: 36px; }
+  .footer-col h4 {
+    font-size: 12px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink3); margin-bottom: 10px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .footer-col a { text-decoration: none; color: var(--ink2); font-size: 13px; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 20px; border-top: 1px solid var(--card-border);
+    font-size: 12px; color: var(--ink3);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .articles-grid { grid-template-columns: 1fr 1fr; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .newsletter { grid-template-columns: 1fr; padding: 36px 28px; }
+    .footer-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .articles-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Byte<span>Wise</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="#categories">Topics</a></li>
+      <li><a href="#newsletter">Newsletter</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="#newsletter" class="nav-cta">Subscribe</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-label">
+      <span class="hero-label-dot"></span>
+      New articles every week
+    </div>
+    <h1>Tech insights.<br><em>Real talk.</em><br>No fluff.</h1>
+    <p>Deep dives into AI, gadgets, tools, and the ideas shaping how we work and live — written in plain English for curious minds.</p>
+    <div class="hero-btns">
+      <a href="articles.html" class="btn-primary">Browse Articles →</a>
+      <a href="#newsletter" class="btn-secondary">Get Updates</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="num">8+</div>
+        <div class="lbl">Topics covered</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">40+</div>
+        <div class="lbl">AI tools mapped</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">100%</div>
+        <div class="lbl">No paywalls</div>
+      </div>
+    </div>
+    <a href="article-ai-tools.html" class="featured-mini">
+      <div class="mini-icon">🤖</div>
+      <div>
+        <div class="mini-title">AI Tools Landscape 2026 — 40+ tools across 8 categories</div>
+        <div class="mini-meta">Latest article · 8 min read</div>
+      </div>
+    </a>
+    <a href="article-openclaw.html" class="featured-mini">
+      <div class="mini-icon" style="background:linear-gradient(135deg,#1b6fe822,#1b6fe811);border-color:#1b6fe833;">🦞</div>
+      <div>
+        <div class="mini-title">OpenClaw explained — the free AI agent going viral in 2026</div>
+        <div class="mini-meta">Published this week · 6 min read</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FEATURED -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Featured</h2>
+    <a href="articles.html" class="see-all">All articles →</a>
+  </div>
+  <div class="featured-grid">
+    <a href="article-ai-tools.html" class="featured-card">
+      <div class="featured-thumb">🗺️</div>
+      <div class="featured-body">
+        <span class="featured-tag">AI TOOLS</span>
+        <div class="featured-title">The Complete AI Tools Landscape 2026 — 40+ Products Mapped</div>
+        <div class="featured-excerpt">From Claude Code to OpenClaw to Cursor — we mapped every major AI tool across 8 categories so you know exactly which one to use for what.</div>
+      </div>
+      <div class="featured-foot">
+        <span class="featured-meta">May 20, 2026 · 8 min read</span>
+        <span class="featured-read">Read →</span>
+      </div>
+    </a>
+    <div class="side-cards">
+      <a href="article-openclaw.html" class="side-card">
+        <div class="side-num">02</div>
+        <div class="card-tags"><span class="tag accent">AI AGENTS</span></div>
+        <div class="side-title">OpenClaw: The viral open-source agent that does your computer work for you</div>
+        <div class="side-meta">May 18, 2026 · 6 min</div>
+      </a>
+      <a href="#" class="side-card" onclick="alert('Coming soon! This is a placeholder for your next article.');">
+        <div class="side-num">03</div>
+        <div class="card-tags"><span class="tag blue">GADGETS</span></div>
+        <div class="side-title">Vivo V70 Review: Is the ₹46K camera phone worth it in 2026?</div>
+        <div class="side-meta">Coming soon · ~5 min</div>
+      </a>
+      <a href="#" class="side-card" onclick="alert('Coming soon! Add your next article here.');">
+        <div class="side-num">04</div>
+        <div class="card-tags"><span class="tag">PRODUCTIVITY</span></div>
+        <div class="side-title">How I use AI tools to save 3 hours every day</div>
+        <div class="side-meta">Coming soon</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CATEGORIES -->
+<div class="section" id="categories">
+  <div class="section-header">
+    <h2 class="section-title">Browse by Topic</h2>
+  </div>
+  <div class="categories-bar">
+    <a href="articles.html" class="cat-btn active-accent">All</a>
+    <a href="articles.html?cat=ai" class="cat-btn">🤖 AI & Agents</a>
+    <a href="articles.html?cat=coding" class="cat-btn">💻 Coding Tools</a>
+    <a href="articles.html?cat=gadgets" class="cat-btn">📱 Gadgets & Reviews</a>
+    <a href="articles.html?cat=productivity" class="cat-btn">⚡ Productivity</a>
+    <a href="articles.html?cat=tech" class="cat-btn">🔬 Tech Deep Dives</a>
+    <a href="articles.html?cat=india" class="cat-btn">🇮🇳 India Tech</a>
+    <a href="articles.html?cat=beginners" class="cat-btn">🌱 For Beginners</a>
+  </div>
+</div>
+
+<!-- ALL ARTICLES GRID -->
+<div class="section" style="padding-top:0">
+  <div class="articles-grid">
+
+    <a href="article-ai-tools.html" class="article-card">
+      <div class="card-thumb" style="background:linear-gradient(135deg,#0f0f0f,#1e1e1e);">🗺️</div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag accent">AI TOOLS</span><span class="tag">GUIDE</span></div>
+        <div class="card-title">AI Tools Landscape 2026 — 40+ Products Mapped</div>
+        <div class="card-excerpt">Claude Code, OpenClaw, Cursor, ChatGPT and 36 more tools organized across 8 clear categories.</div>
+        <div class="card-footer">
+          <span class="card-meta">May 20 · 8 min</span>
+          <span class="card-read">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="article-openclaw.html" class="article-card">
+      <div class="card-thumb" style="background:linear-gradient(135deg,#001a33,#002a4d);">🦞</div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag accent">AI AGENTS</span></div>
+        <div class="card-title">OpenClaw Explained — The Free AI Agent Going Viral</div>
+        <div class="card-excerpt">What it is, how it works, how it compares to Claude Code and Copilot, and whether it's safe to use.</div>
+        <div class="card-footer">
+          <span class="card-meta">May 18 · 6 min</span>
+          <span class="card-read">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Placeholder cards for upcoming articles -->
+    <div class="article-card" style="opacity:.6;cursor:default;" onclick="alert('Add your next article here! Open articles.html and follow the same card pattern.')">
+      <div class="card-thumb" style="background:linear-gradient(135deg,#1a0f0a,#2e1a0f);">📱</div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag blue">GADGETS</span></div>
+        <div class="card-title">Vivo V70 — Best Mid-Range Camera Phone in India?</div>
+        <div class="card-excerpt">Full review coming soon. Click to add this article when it's ready.</div>
+        <div class="card-footer">
+          <span class="card-meta">Coming soon</span>
+          <span class="card-read" style="color:#aaa;">Draft</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div style="max-width:var(--max);margin:0 auto;padding:0 24px 56px;" id="newsletter">
+  <div class="newsletter">
+    <div>
+      <div class="nl-title">Stay <em>ahead</em> of the curve.</div>
+      <p class="nl-desc">Get new articles, tool reviews, and AI news delivered straight to your inbox. No spam. Unsubscribe anytime.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="text" placeholder="Your name">
+      <input class="nl-input" type="email" placeholder="Your email address">
+      <button class="nl-btn" onclick="handleSubscribe()">Subscribe for Free →</button>
+      <span class="nl-note">📬 Joined by 0 readers so far. Be the first!</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-logo">Byte<span>Wise</span></a>
+        <p class="footer-tagline">Tech insights. Real talk. No fluff.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Topics</h4>
+          <ul>
+            <li><a href="#">AI & Agents</a></li>
+            <li><a href="#">Coding Tools</a></li>
+            <li><a href="#">Gadgets</a></li>
+            <li><a href="#">Productivity</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Blog</h4>
+          <ul>
+            <li><a href="articles.html">All Articles</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#newsletter">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ByteWise. Made with ❤️ from Tamil Nadu, India.</span>
+      <span>Built with Claude AI</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleSubscribe() {
+  const email = document.querySelector('.nl-input[type="email"]').value;
+  const name = document.querySelector('.nl-input[type="text"]').value;
+  if (!email || !name) { alert('Please enter your name and email!'); return; }
+  alert(`🎉 Thanks ${name}! You're subscribed. (Connect a service like Mailchimp or ConvertKit to actually collect emails.)`);
+}
+</script>
+</body>
+</html>

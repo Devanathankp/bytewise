@@ -462,19 +462,8 @@
         <div class="card-tags"><span class="tag accent">AI AGENTS</span></div>
         <div class="side-title">OpenClaw: The viral open-source agent that does your computer work for you</div>
         <div class="side-meta">May 18, 2026 · 6 min</div>
-      </a>
-      <a href="#" class="side-card" onclick="alert('Coming soon! This is a placeholder for your next article.');">
-        <div class="side-num">03</div>
-        <div class="card-tags"><span class="tag blue">GADGETS</span></div>
-        <div class="side-title">Vivo V70 Review: Is the ₹46K camera phone worth it in 2026?</div>
-        <div class="side-meta">Coming soon · ~5 min</div>
-      </a>
-      <a href="#" class="side-card" onclick="alert('Coming soon! Add your next article here.');">
-        <div class="side-num">04</div>
-        <div class="card-tags"><span class="tag">PRODUCTIVITY</span></div>
-        <div class="side-title">How I use AI tools to save 3 hours every day</div>
-        <div class="side-meta">Coming soon</div>
-      </a>
+      </a>    
+
     </div>
   </div>
 </div>
@@ -494,7 +483,6 @@
     <a href="articles.html?cat=productivity" class="cat-btn">⚡ Productivity</a>
     <a href="articles.html?cat=tech" class="cat-btn">🔬 Tech Deep Dives</a>
     <a href="articles.html?cat=india" class="cat-btn">🇮🇳 India Tech</a>
-    <a href="articles.html?cat=beginners" class="cat-btn">🌱 For Beginners</a>
   </div>
 </div>
 
@@ -527,37 +515,6 @@
         </div>
       </div>
     </a>
-
-    <!-- Placeholder cards for upcoming articles -->
-    <div class="article-card" style="opacity:.6;cursor:default;" onclick="alert('Add your next article here! Open articles.html and follow the same card pattern.')">
-      <div class="card-thumb" style="background:linear-gradient(135deg,#1a0f0a,#2e1a0f);">📱</div>
-      <div class="card-body">
-        <div class="card-tags"><span class="tag blue">GADGETS</span></div>
-        <div class="card-title">Vivo V70 — Best Mid-Range Camera Phone in India?</div>
-        <div class="card-excerpt">Full review coming soon. Click to add this article when it's ready.</div>
-        <div class="card-footer">
-          <span class="card-meta">Coming soon</span>
-          <span class="card-read" style="color:#aaa;">Draft</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- NEWSLETTER -->
-<div style="max-width:var(--max);margin:0 auto;padding:0 24px 56px;" id="newsletter">
-  <div class="newsletter">
-    <div>
-      <div class="nl-title">Stay <em>ahead</em> of the curve.</div>
-      <p class="nl-desc">Get new articles, tool reviews, and AI news delivered straight to your inbox. No spam. Unsubscribe anytime.</p>
-    </div>
-    <div class="nl-form">
-      <input class="nl-input" type="text" placeholder="Your name">
-      <input class="nl-input" type="email" placeholder="Your email address">
-      <button class="nl-btn" onclick="handleSubscribe()">Subscribe for Free →</button>
-      <span class="nl-note">📬 Joined by 0 readers so far. Be the first!</span>
-    </div>
   </div>
 </div>
 
@@ -595,14 +552,5 @@
     </div>
   </div>
 </footer>
-
-<script>
-function handleSubscribe() {
-  const email = document.querySelector('.nl-input[type="email"]').value;
-  const name = document.querySelector('.nl-input[type="text"]').value;
-  if (!email || !name) { alert('Please enter your name and email!'); return; }
-  alert(`🎉 Thanks ${name}! You're subscribed. (Connect a service like Mailchimp or ConvertKit to actually collect emails.)`);
-}
-</script>
 </body>
 </html>

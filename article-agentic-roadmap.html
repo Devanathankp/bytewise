@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agentic Roadmap 2026 — ByteWise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f; --ink2: #3a3a3a; --ink3: #888;
+    --paper: #fafaf7; --cream: #f3f1eb;
+    --accent: #e84e1b; --accent2: #1b6fe8;
+    --card-border: #e2e0d8; --max: 720px; --r: 10px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); line-height: 1.7; font-size: 17px; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1.5px solid var(--card-border); padding: 0 24px; }
+  .nav-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 62px; }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--ink); text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--ink2); font-size: 14px; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { background: var(--ink); color: #fff; border: none; padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .2s; text-decoration: none; }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ARTICLE */
+  .article-wrap { max-width: var(--max); margin: 0 auto; padding: 48px 24px 80px; }
+  .breadcrumb { font-size: 13px; color: var(--ink3); margin-bottom: 28px; }
+  .breadcrumb a { color: var(--ink3); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+
+  .article-header { margin-bottom: 40px; }
+  .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tag { background: #eeecea; color: #3a3a3a; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .tag.accent { background: #e84e1b18; color: var(--accent); }
+  .tag.blue { background: #1b6fe818; color: var(--accent2); }
+  .tag.green { background: #0f6e5618; color: #0f6e56; }
+  .article-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(28px, 5vw, 44px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+  .article-deck { font-size: 19px; color: var(--ink2); line-height: 1.65; font-weight: 300; margin-bottom: 24px; }
+  .article-meta { display: flex; align-items: center; gap: 20px; padding: 16px 0; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); font-size: 13px; color: var(--ink3); }
+  .meta-author { font-weight: 500; color: var(--ink); }
+
+  .article-hero { border-radius: 16px; height: 280px; display: flex; align-items: center; justify-content: center; font-size: 80px; margin-bottom: 48px; background: linear-gradient(135deg, #0a0a1a 0%, #111130 50%, #1a0a0a 100%); position: relative; overflow: hidden; }
+  .article-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, #1b6fe822 0%, transparent 60%), radial-gradient(circle at 70% 50%, #e84e1b18 0%, transparent 60%); }
+  .article-hero span { position: relative; z-index: 1; }
+
+  /* BODY */
+  .article-body h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.5px; margin: 52px 0 16px; color: var(--ink); }
+  .article-body h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 19px; margin: 32px 0 10px; color: var(--ink); }
+  .article-body p { margin-bottom: 20px; color: var(--ink2); font-weight: 300; }
+  .article-body strong { font-weight: 600; color: var(--ink); }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid #e84e1b44; }
+  .article-body a:hover { border-color: var(--accent); }
+  .article-body ul, .article-body ol { margin: 14px 0 20px 22px; color: var(--ink2); font-weight: 300; }
+  .article-body li { margin-bottom: 8px; line-height: 1.65; }
+
+  /* CALLOUTS */
+  .callout { background: var(--cream); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 18px 20px; margin: 28px 0; font-size: 15px; color: var(--ink2); }
+  .callout strong { display: block; margin-bottom: 5px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); font-weight: 600; }
+  .callout.blue { border-color: var(--accent2); }
+  .callout.blue strong { color: var(--accent2); }
+  .callout.green { border-color: #0f6e56; }
+  .callout.green strong { color: #0f6e56; }
+
+  /* ROADMAP TIMELINE */
+  .roadmap { margin: 36px 0; display: flex; flex-direction: column; gap: 0; }
+  .phase { display: grid; grid-template-columns: 48px 1fr; gap: 0 20px; }
+  .phase-line { display: flex; flex-direction: column; align-items: center; }
+  .phase-dot { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; flex-shrink: 0; color: #fff; }
+  .phase-connector { width: 2px; flex: 1; min-height: 24px; margin: 4px auto; }
+  .phase-body { padding-bottom: 32px; }
+  .phase-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+  .phase-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -.3px; margin-bottom: 8px; color: var(--ink); }
+  .phase-desc { font-size: 14.5px; color: var(--ink2); font-weight: 300; line-height: 1.65; margin-bottom: 12px; }
+  .phase-skills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-pill { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 1px solid; }
+
+  /* TOOL TABLE */
+  .tool-table-wrap { overflow-x: auto; margin: 28px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: var(--ink); color: #fff; padding: 11px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: .04em; }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--card-border); color: var(--ink2); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--cream); }
+
+  /* SKILL CARD GRID */
+  .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
+  .skill-card { background: var(--paper); border: 1.5px solid var(--card-border); border-radius: 12px; padding: 18px 20px; transition: border-color .2s; }
+  .skill-card:hover { border-color: #bbb; }
+  .skill-card-icon { font-size: 22px; margin-bottom: 8px; }
+  .skill-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .skill-card-desc { font-size: 13px; color: var(--ink2); font-weight: 300; line-height: 1.55; }
+
+  /* SALARY TABLE highlight */
+  .highlight-cell { font-weight: 600; color: #0f6e56; }
+
+  /* BOTTOM NAV */
+  .article-bottom { margin-top: 56px; padding-top: 32px; border-top: 1.5px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .back-link { text-decoration: none; color: var(--ink2); font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+  .back-link:hover { color: var(--accent); }
+  .share-btns { display: flex; gap: 8px; }
+  .share-btn { background: var(--cream); border: 1.5px solid var(--card-border); color: var(--ink); padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .15s; }
+  .share-btn:hover { background: var(--ink); color: #fff; }
+
+  /* NEXT ARTICLE CARD */
+  .next-article { background: var(--ink); color: #fff; border-radius: 14px; padding: 24px 28px; margin-top: 48px; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-decoration: none; transition: opacity .2s; }
+  .next-article:hover { opacity: .88; }
+  .next-lbl { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  .next-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; line-height: 1.25; }
+  .next-arrow { font-size: 28px; flex-shrink: 0; }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .skill-grid { grid-template-columns: 1fr; }
+    .article-bottom { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Byte<span>Wise</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="index.html#categories">Topics</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="index.html#newsletter" class="nav-cta">Subscribe</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> &nbsp;/&nbsp;
+    <a href="articles.html">Articles</a> &nbsp;/&nbsp;
+    AI Agentic Roadmap 2026
+  </div>
+
+  <header class="article-header">
+    <div class="article-tags">
+      <span class="tag accent">AI AGENTS</span>
+      <span class="tag blue">ROADMAP</span>
+      <span class="tag green">CAREER</span>
+      <span class="tag">2026</span>
+    </div>
+    <h1 class="article-title">The Complete AI Agentic Roadmap 2026 — From Zero to Building Real Agents</h1>
+    <p class="article-deck">Agentic AI is the biggest career opportunity in tech right now. Here's a clear, phase-by-phase roadmap — tools, skills, timelines, and salary expectations — so you know exactly what to learn and in what order.</p>
+    <div class="article-meta">
+      <span class="meta-author">ByteWise</span>
+      <span>May 21, 2026</span>
+      <span>10 min read</span>
+      <span>🇮🇳 Tamil Nadu, India</span>
+    </div>
+  </header>
+
+  <div class="article-hero"><span>🤖</span></div>
+
+  <div class="article-body">
+
+    <p>Six months ago, "AI agent" was mostly a buzzword. Today it's a job title. Companies are hiring <strong>Agentic AI Engineers</strong>, <strong>AI Workflow Architects</strong>, and <strong>LLM Ops Engineers</strong> at salaries that would have seemed absurd two years ago — and the gap between people who can build agents and people who can only chat with them is widening fast.</p>
+
+    <p>The problem is that most learning content is either too shallow ("just use LangChain!") or assumes you already have a PhD. This roadmap is different. It's built for people who are serious about going from curious beginner to job-ready agentic AI engineer — with clear phases, real tools, and honest timelines.</p>
+
+    <div class="callout">
+      <strong>Who this roadmap is for</strong>
+      This guide is for developers, IT professionals, and career switchers who want to build production-grade AI agents — not just tinker with demos. Non-developers can follow along too; the early phases are accessible to anyone comfortable with Python basics.
+    </div>
+
+    <h2>What Is Agentic AI, Really?</h2>
+
+    <p>Before diving into the roadmap, let's make sure we're talking about the same thing. Most people's first experience with AI is a chatbot: you type, it responds. That's a single-turn, stateless interaction — useful, but limited.</p>
+
+    <p><strong>Agentic AI is different.</strong> An agent can:</p>
+    <ul>
+      <li>Break a complex task into sub-tasks and plan its own approach</li>
+      <li>Use tools — search the web, write and execute code, send emails, call APIs</li>
+      <li>Remember context across multiple steps (memory)</li>
+      <li>Work alongside other agents (multi-agent systems)</li>
+      <li>Decide when to ask a human for input and when to proceed autonomously</li>
+    </ul>
+
+    <p>The shift from "chat AI" to "agentic AI" is roughly equivalent to the shift from a calculator to a computer. Both are useful — but the computer can do things the calculator never could.</p>
+
+    <div class="callout blue">
+      <strong>Why now?</strong>
+      According to Gartner, over 60% of enterprise AI applications are expected to include agentic components by 2026. The tools to build them — LangChain, LangGraph, CrewAI, AutoGen, the Model Context Protocol — have matured enormously in the last 12 months. The window to get in early is still open, but it's closing.
+    </div>
+
+    <h2>The 6-Phase Roadmap</h2>
+    <p>This is a sequential path. Each phase builds on the previous one. Estimated times assume 1–2 hours of focused practice per day.</p>
+
+    <div class="roadmap">
+
+      <!-- Phase 1 -->
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot" style="background:#534AB7;">1</div>
+          <div class="phase-connector" style="background:#534AB740;"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-label" style="color:#534AB7;">Foundation — 4–6 weeks</div>
+          <div class="phase-title">Python + APIs + Basic LLM calls</div>
+          <div class="phase-desc">You cannot skip this. Even if you come from another language, Python is the lingua franca of AI. Focus on writing clean functions, working with JSON, and making API calls. By the end, you should be able to call the Claude or OpenAI API from a Python script and get a response.</div>
+          <div class="phase-skills">
+            <span class="skill-pill" style="background:#EEEDFE;color:#534AB7;border-color:#AFA9EC;">Python basics</span>
+            <span class="skill-pill" style="background:#EEEDFE;color:#534AB7;border-color:#AFA9EC;">REST APIs</span>
+            <span class="skill-pill" style="background:#EEEDFE;color:#534AB7;border-color:#AFA9EC;">JSON handling</span>
+            <span class="skill-pill" style="background:#EEEDFE;color:#534AB7;border-color:#AFA9EC;">Anthropic / OpenAI SDK</span>
+            <span class="skill-pill" style="background:#EEEDFE;color:#534AB7;border-color:#AFA9EC;">Prompt engineering</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot" style="background:#0F6E56;">2</div>
+          <div class="phase-connector" style="background:#0F6E5640;"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-label" style="color:#0F6E56;">LLM Fundamentals — 3–4 weeks</div>
+          <div class="phase-title">How LLMs work + Prompting mastery</div>
+          <div class="phase-desc">You don't need to train models, but you do need to understand how they work well enough to build reliably with them. Learn about context windows, tokens, temperature, system prompts, and why models hallucinate. This knowledge directly translates to writing better agents.</div>
+          <div class="phase-skills">
+            <span class="skill-pill" style="background:#E1F5EE;color:#0F6E56;border-color:#5DCAA5;">Transformers (high-level)</span>
+            <span class="skill-pill" style="background:#E1F5EE;color:#0F6E56;border-color:#5DCAA5;">Context windows</span>
+            <span class="skill-pill" style="background:#E1F5EE;color:#0F6E56;border-color:#5DCAA5;">System prompts</span>
+            <span class="skill-pill" style="background:#E1F5EE;color:#0F6E56;border-color:#5DCAA5;">RAG basics</span>
+            <span class="skill-pill" style="background:#E1F5EE;color:#0F6E56;border-color:#5DCAA5;">Embeddings</span>
+            <span class="skill-pill" style="background:#E1F5EE;color:#0F6E56;border-color:#5DCAA5;">Vector databases</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot" style="background:#854F0B;">3</div>
+          <div class="phase-connector" style="background:#854F0B40;"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-label" style="color:#854F0B;">Agent Frameworks — 4–5 weeks</div>
+          <div class="phase-title">LangChain, LangGraph, and tool use</div>
+          <div class="phase-desc">This is where it gets exciting. Agent frameworks give you the building blocks to connect LLMs to tools, memories, and workflows. Learn LangChain for single-agent pipelines, then LangGraph for multi-step stateful agents. Build at least two real projects — a research agent and a code-writing agent.</div>
+          <div class="phase-skills">
+            <span class="skill-pill" style="background:#FAEEDA;color:#854F0B;border-color:#EF9F27;">LangChain</span>
+            <span class="skill-pill" style="background:#FAEEDA;color:#854F0B;border-color:#EF9F27;">LangGraph</span>
+            <span class="skill-pill" style="background:#FAEEDA;color:#854F0B;border-color:#EF9F27;">Tool calling</span>
+            <span class="skill-pill" style="background:#FAEEDA;color:#854F0B;border-color:#EF9F27;">Memory management</span>
+            <span class="skill-pill" style="background:#FAEEDA;color:#854F0B;border-color:#EF9F27;">ReAct pattern</span>
+            <span class="skill-pill" style="background:#FAEEDA;color:#854F0B;border-color:#EF9F27;">Function calling</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot" style="background:#993556;">4</div>
+          <div class="phase-connector" style="background:#99355640;"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-label" style="color:#993556;">Multi-Agent Systems — 4–6 weeks</div>
+          <div class="phase-title">CrewAI, AutoGen + MCP integration</div>
+          <div class="phase-desc">Single agents are powerful. Teams of specialized agents working together are transformative. Learn multi-agent orchestration patterns — planner agents, executor agents, critic agents. Then learn MCP (Model Context Protocol) — Anthropic's standard for connecting agents to external tools and services. This is becoming the industry standard fast.</div>
+          <div class="phase-skills">
+            <span class="skill-pill" style="background:#FBEAF0;color:#993556;border-color:#ED93B1;">CrewAI</span>
+            <span class="skill-pill" style="background:#FBEAF0;color:#993556;border-color:#ED93B1;">AutoGen</span>
+            <span class="skill-pill" style="background:#FBEAF0;color:#993556;border-color:#ED93B1;">MCP (Model Context Protocol)</span>
+            <span class="skill-pill" style="background:#FBEAF0;color:#993556;border-color:#ED93B1;">Agent orchestration</span>
+            <span class="skill-pill" style="background:#FBEAF0;color:#993556;border-color:#ED93B1;">Human-in-the-loop</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot" style="background:#185FA5;">5</div>
+          <div class="phase-connector" style="background:#185FA540;"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-label" style="color:#185FA5;">Production & Deployment — 3–4 weeks</div>
+          <div class="phase-title">Deploying, evaluating, and monitoring agents</div>
+          <div class="phase-desc">Building an agent that works on your laptop is easy. Making it reliable, safe, and observable in production is hard. Learn how to evaluate agent outputs (LLM-as-judge, unit tests), monitor agent behaviour, handle errors gracefully, and deploy to the cloud. LangSmith and Langfuse are the go-to observability tools here.</div>
+          <div class="phase-skills">
+            <span class="skill-pill" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB;">LangSmith / Langfuse</span>
+            <span class="skill-pill" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB;">Docker basics</span>
+            <span class="skill-pill" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB;">FastAPI</span>
+            <span class="skill-pill" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB;">Agent evaluation</span>
+            <span class="skill-pill" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB;">Cost management</span>
+            <span class="skill-pill" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB;">Safety guardrails</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 6 -->
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot" style="background:#444441;">6</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-label" style="color:#444441;">Specialisation — ongoing</div>
+          <div class="phase-title">Pick your lane and go deep</div>
+          <div class="phase-desc">Once you have the foundations, specialise. Agentic AI is broad enough that deep expertise in one area is more valuable than shallow knowledge across all areas. Pick the lane that fits your interests and the industry you want to work in.</div>
+          <div class="phase-skills">
+            <span class="skill-pill" style="background:#F1EFE8;color:#444441;border-color:#B4B2A9;">Coding agents</span>
+            <span class="skill-pill" style="background:#F1EFE8;color:#444441;border-color:#B4B2A9;">Browser automation</span>
+            <span class="skill-pill" style="background:#F1EFE8;color:#444441;border-color:#B4B2A9;">Enterprise workflows</span>
+            <span class="skill-pill" style="background:#F1EFE8;color:#444441;border-color:#B4B2A9;">Voice agents</span>
+            <span class="skill-pill" style="background:#F1EFE8;color:#444441;border-color:#B4B2A9;">Computer use agents</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>The Core Toolkit: What Tools to Learn</h2>
+    <p>The agentic AI ecosystem is noisy. Here are the tools that actually matter — with honest notes on where each fits.</p>
+
+    <div class="tool-table-wrap">
+      <table>
+        <tr>
+          <th>Tool</th>
+          <th>Category</th>
+          <th>Why it matters</th>
+          <th>Learn order</th>
+        </tr>
+        <tr><td><strong>Python</strong></td><td>Language</td><td>Everything in AI runs on Python. Non-negotiable.</td><td>Phase 1 — first</td></tr>
+        <tr><td><strong>Anthropic Claude API</strong></td><td>LLM</td><td>Best-in-class for following complex instructions. Claude 3.5 and 4.x are the go-to for agentic tasks.</td><td>Phase 1</td></tr>
+        <tr><td><strong>OpenAI API</strong></td><td>LLM</td><td>Largest ecosystem of tutorials. Good to know alongside Claude.</td><td>Phase 1</td></tr>
+        <tr><td><strong>LangChain</strong></td><td>Framework</td><td>Most widely used agent framework. Steep learning curve but worth it.</td><td>Phase 3 — start here</td></tr>
+        <tr><td><strong>LangGraph</strong></td><td>Framework</td><td>LangChain's graph-based agent orchestrator. Better for complex stateful agents.</td><td>Phase 3 — after LangChain</td></tr>
+        <tr><td><strong>CrewAI</strong></td><td>Multi-agent</td><td>Easiest way to build multi-agent teams. Role-based agent design.</td><td>Phase 4</td></tr>
+        <tr><td><strong>MCP (Model Context Protocol)</strong></td><td>Integration</td><td>Anthropic's open standard for connecting agents to tools. Becoming the industry default.</td><td>Phase 4</td></tr>
+        <tr><td><strong>ChromaDB / Pinecone</strong></td><td>Vector DB</td><td>Store embeddings for RAG (retrieval-augmented generation). Pick one and learn it well.</td><td>Phase 2</td></tr>
+        <tr><td><strong>LangSmith</strong></td><td>Observability</td><td>Debug, evaluate, and monitor agent runs. Essential for production.</td><td>Phase 5</td></tr>
+        <tr><td><strong>FastAPI + Docker</strong></td><td>Deployment</td><td>Package and serve your agents as APIs. Docker is the deployment standard.</td><td>Phase 5</td></tr>
+      </table>
+    </div>
+
+    <h2>4 Key Concepts You Must Understand</h2>
+
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">🔍</div>
+        <div class="skill-card-title">RAG — Retrieval-Augmented Generation</div>
+        <div class="skill-card-desc">Instead of relying only on the LLM's training data, RAG lets agents search a knowledge base for relevant information before responding. Critical for agents that need up-to-date or domain-specific knowledge.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🔧</div>
+        <div class="skill-card-title">Tool Use / Function Calling</div>
+        <div class="skill-card-desc">The mechanism by which LLMs can trigger real-world actions — searching the web, running code, reading a file. This is what makes an AI an agent rather than a chatbot.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🧠</div>
+        <div class="skill-card-title">Memory Systems</div>
+        <div class="skill-card-desc">Agents need to remember context across steps. There are three types: short-term (within a conversation), long-term (stored in a vector DB), and episodic (specific past experiences). Knowing when to use each is a real skill.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🌐</div>
+        <div class="skill-card-title">Multi-Agent Orchestration</div>
+        <div class="skill-card-desc">Complex tasks need multiple specialized agents working together. A planner breaks the task down, specialized agents execute each part, and a critic reviews the output. Understanding coordination patterns is key.</div>
+      </div>
+    </div>
+
+    <h2>Realistic Salary Expectations (India, 2026)</h2>
+
+    <p>Let's talk numbers. The agentic AI job market in India is still early but moving fast. These are real ranges based on current job postings:</p>
+
+    <div class="tool-table-wrap">
+      <table>
+        <tr>
+          <th>Role</th>
+          <th>Experience</th>
+          <th>Salary Range (LPA)</th>
+          <th>Key Skills</th>
+        </tr>
+        <tr><td><strong>AI/ML Engineer</strong></td><td>0–2 years</td><td class="highlight-cell">₹8–15 LPA</td><td>Python, LLM APIs, basic agents</td></tr>
+        <tr><td><strong>LLM Engineer</strong></td><td>1–3 years</td><td class="highlight-cell">₹15–28 LPA</td><td>LangChain, RAG, fine-tuning</td></tr>
+        <tr><td><strong>Agentic AI Engineer</strong></td><td>2–4 years</td><td class="highlight-cell">₹25–45 LPA</td><td>Multi-agent, MCP, production deployment</td></tr>
+        <tr><td><strong>AI Architect</strong></td><td>5+ years</td><td class="highlight-cell">₹45–80+ LPA</td><td>System design, enterprise-scale agents</td></tr>
+        <tr><td><strong>Freelance (project-based)</strong></td><td>Any</td><td class="highlight-cell">₹3,000–15,000/day</td><td>Depends on specialisation</td></tr>
+      </table>
+    </div>
+
+    <div class="callout green">
+      <strong>India-specific note</strong>
+      The biggest demand in India right now is from product companies (Flipkart, Razorpay, Swiggy, Zepto), IT services firms building AI practices (TCS, Infosys, Wipro), and startups. Remote work for US/UK companies is also increasingly common for strong agentic AI engineers — those roles typically pay in USD.
+    </div>
+
+    <h2>Common Mistakes to Avoid</h2>
+
+    <p><strong>Starting with fine-tuning instead of prompting.</strong> Most real-world agentic problems are solved by better prompting and architecture, not by training custom models. Fine-tuning is expensive and usually unnecessary at the agent layer.</p>
+
+    <p><strong>Building agents that can't fail gracefully.</strong> Real agents hit rate limits, get bad LLM responses, encounter unexpected inputs. Build retry logic, error handling, and fallbacks from day one — not as an afterthought.</p>
+
+    <p><strong>Skipping evaluation.</strong> "It works on my test case" is not production-ready. Learn how to write proper evaluation suites for your agents — LLM-as-judge, deterministic checks, and human review loops.</p>
+
+    <p><strong>Ignoring safety.</strong> Agents with access to real tools (email, code execution, file systems) can do real damage if they go wrong. Build guardrails, scope permissions, and always have a human-in-the-loop checkpoint for irreversible actions.</p>
+
+    <h2>Your First 30 Days: A Concrete Action Plan</h2>
+
+    <p><strong>Week 1–2:</strong> Set up Python, get an API key from Anthropic (free credits available), and complete a basic chatbot. Read Anthropic's prompt engineering documentation front to back. Make 50+ API calls.</p>
+
+    <p><strong>Week 3:</strong> Build your first tool-using agent. Give it the ability to search the web (use Tavily API — free tier available) and summarise results. Make it answer questions it couldn't answer before.</p>
+
+    <p><strong>Week 4:</strong> Build a simple RAG system. Take 10–20 documents, embed them into ChromaDB, and build an agent that answers questions based only on those documents. Deploy it as a simple FastAPI endpoint.</p>
+
+    <p>By the end of 30 days, you'll have three working agents, a GitHub portfolio to show recruiters, and a concrete sense of what you want to specialise in next.</p>
+
+    <div class="callout">
+      <strong>Free resources to start today</strong>
+      Anthropic's documentation at docs.anthropic.com · LangChain's official tutorials at python.langchain.com · DeepLearning.AI's free short courses on agents · Towards Agentic AI blog (towardsagenticai.com) · The "Agentic Engineering Roadmap" at MachineLearningMastery.com
+    </div>
+
+    <h2>The Bottom Line</h2>
+
+    <p>Agentic AI is not a future trend — it's the present reality of how AI systems are being built in 2026. The professionals who master this discipline in the next 12–18 months will have a significant advantage as enterprises race to deploy autonomous systems at scale.</p>
+
+    <p>The roadmap is clear. The tools are mature. The demand is real. What's required now is focused, consistent effort over 5–6 months — and the willingness to build things that actually work, not just follow tutorials.</p>
+
+    <p>Start with Phase 1 today. Call the API. Build something small. The rest follows from there.</p>
+
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="article-bottom">
+    <a href="articles.html" class="back-link">← All Articles</a>
+    <div class="share-btns">
+      <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href).then(()=>alert('Link copied!'))">📋 Copy Link</button>
+      <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text=The Complete AI Agentic Roadmap 2026 — from zero to building real agents&url='+encodeURIComponent(window.location.href)+'&via=bytewise')">Share on X</button>
+    </div>
+  </div>
+
+  <!-- NEXT ARTICLE -->
+  <a href="article-ai-tools.html" class="next-article">
+    <div>
+      <div class="next-lbl">Also on ByteWise</div>
+      <div class="next-title">The Complete AI Tools Landscape 2026 — 40+ Products Mapped</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </a>
+
+</div><!-- /.article-wrap -->
+
+</body>
+</html>
